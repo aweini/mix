@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <div id="div1" style="margin:20px;padding:10px;border:1px solid #ccc;width:100px;background: red"></div>
+</body>
+<script>
+//   function caller(a,b,callback){
+//       var c= a-b;
+//       if(c>0){
+//           callback&&callback(c)
+//       }
+//   }
+ 
+//   function father(){
+//     var a2=8;
+//     function add(a1){
+//         console.log(a2+a1);
+//     }
+//     caller(2,1,add);
+//   }
+ 
+//   father();
+
+function father(){
+    var ff = 10;
+    function dd(){
+      var a = 1;
+      var b = 2;
+      function zi(){
+        console.log("子获取祖父的变量："+ff);
+        console.log("子父亲的变量："+a);
+         
+      }
+      zi();
+      ee(b,function(){
+          console.log("回调函数声明的地方上下文的参数:"+a);
+      })
+    }
+    dd();
+}
+  
+
+  function ee(b,callback){
+      callback();
+      console.log("函数只能只用函数声明时内部的变量，不能使用调用地方上下文的变量，除非调用地方变量以函数参数的形式传入被调用函数,这里的a不在函数声明处，也没有以参数的形式传进来，只是在调用地方声明了所以不可用:"+(a+b));
+    
+  }
+
+  father();
+  
+</script>
+</html>

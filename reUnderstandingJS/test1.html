@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>js test</title>
+</head>
+<body>
+
+</body>
+<script>
+    window.onload = function(){
+        //字符串拼接 换行 \ 或者+连接
+        document.body.innerHTML = '<div>cat1</div>\
+                <div>cat2</div>\
+                <div>cat3</div>\
+                <div>cat4</div>\
+                <div>cat5</div>';
+
+        //console.log
+        var a = "hello";
+        console.log("%c"+a,'font-size:400%;color:red');
+
+        //typeof instant
+        //b未声明报错
+//        if(!b){
+//            console.log("a已声明未赋值,或a=undefined或a=''或a=0或a=null");
+//        }
+
+        //typeof 的结果是字符串
+        if(typeof b == 'undefined'){
+            console.log("b未声明或b=undefined");
+        }
+
+        if(!{}){
+
+        }else{
+            console.log("!{} 为false")
+        }
+        if(![]){
+
+        }else{
+            console.log("![] 为false")
+        }
+
+        //嵌套for循环
+        mm:for (var i=0;i<5;i++){
+            for(var j=0;j<1;j++){
+                if(i==3){
+                    break mm;
+                }
+                console.log("i:"+i);
+            }
+        }
+
+        //call 替换 this , call(xx) 第一个参数就是新的this来替换老的this
+
+        var obj = {
+            aaa: function(){
+                console.log(this);
+            }
+        }
+
+        console.log(obj.aaa())//obj
+
+        var b=[1,2,3];
+        console.log(obj.aaa.call(b));//b
+        console.log(obj.aaa.call());//window
+    }
+</script>
+</html>

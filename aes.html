@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="http://www.osctools.net/js/CryptoJS/components/core-min.js"></script>
+    <script type="text/javascript" src="http://www.osctools.net/js/CryptoJS/rollups/aes.js"></script>
+</head>
+<body>
+
+<script type="text/javascript">
+    var pwd="我的密码";
+
+    var mi=CryptoJS.AES.encrypt("你好，欢迎来到开源中国在线工具，这是一个AES加密测试",pwd);
+    alert("你好，欢迎来到开源中国在线工具，这是一个AES加密测试----密文:"+mi);
+
+    var result=CryptoJS.AES.decrypt(mi,pwd).toString(CryptoJS.enc.Utf8);
+
+    alert("解密结果："+result);
+
+</script>
+</body>
+</html>

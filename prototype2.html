@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function person(name){
+        this.name = name||"man";
+        this.color = ["red","green"];
+    }
+    person.prototype.hello = function(){
+        alert("hi i am a man")
+    }
+    person.prototype.color = ["red", "green", "blue"];
+    var man1 =new person("pp");
+
+    function student(name){
+        person.call(this,"ss")
+    }
+    student.prototype = new person();
+    var student1 = new student();
+</script>
+</body>
+</html>

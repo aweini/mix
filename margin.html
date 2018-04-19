@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style type="text/css">
+        #phone{width:50px;height:50px;border-left:6px solid #EEB422;border-radius:20%;transform:rotate(-30deg);-webkit-transform:rotate(-30deg);margin:20px;margin-right:0px;position:relative;display: inline-block;top: -5px;}
+        #phone:before{width:15px;height:15px;background:#EEB422;border-radius: 20%;content: "";position: absolute;left:-2px;top: 1px;}
+        #phone:after{width:15px;height:15px;background:#EEB422;border-radius: 20%;content: "";position: absolute;left:-3px;top: 34px;}
+
+        body{
+            background-color: #425a6c;
+        }
+            a {
+            position: relative;
+            display: inline-block;
+            outline: none;
+            color: #fff;
+            text-decoration: none;
+            font-size: 32px;
+            padding: 5px 20px;
+        }
+        a:before, a:after { position: absolute; }
+        a:before { content: "\5B"; left: -10px; }
+        a:after { content: "\5D"; right:  -10px; }
+    </style>
+</head>
+<body>
+        <a>鼠标移上去出现方括号</a>
+        <div id="wraper">
+            <div id="phone"></div>
+        </div>
+</body>
+</html>

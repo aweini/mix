@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+    var historyHashArr =  ["insurance/success/login", "insurance/success/success/TD00000008527749", "insurance/success/success/TD00000008527748","insurance/success/success/TD00000008527747"];
+    var newhistoryHashArr = [];
+    historyHashArr.forEach(function(item,index){
+        if(item.indexOf("insurance/success/success")<0){
+            newhistoryHashArr.push(item);
+            console.log(["newhistoryHashArr",newhistoryHashArr])
+        }
+    });
+    historyHashArr = newhistoryHashArr;
+    console.log(["historyHashArr",historyHashArr])
+</script>
+</body>
+</html>

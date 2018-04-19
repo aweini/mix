@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>async</title>
+</head>
+<body>
+<script>
+  function normalFunction() {
+      setTimeout(() => {
+        return 'hello normal'
+      })
+      
+  }
+
+  
+   function asyncFunction() {
+    var promise = new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve('hello asyncFunction')
+        },10000)
+    })
+    return promise;
+  }
+  function asyncFunction2() {
+    var promise = new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve('hello asyncFunction2')
+        },10000)
+    })
+    return promise;
+  }
+ 
+  
+//   asyncFunction().then((res) => {
+//     console.log(['res', res]); 
+//   })
+
+  async function asyncPromiseFunction() {
+      return Promise.resolve('hello async promise');
+  }
+  // Promise.resolve 会把一个常量封装称一个Promise对象， 
+  //但这里async function本来就返回一个promise对象，这里又封装了一次返回的还是一个promise对象
+  //所以 asyncFunction 和 asyncPromiseFunction 结果一样
+  
+//   asyncPromiseFunction().then((res) => {
+//     console.log(['res', res]);
+//   })
+    function timeout(){
+        setTimeout(() => {
+            console.log('timeout timeout timeout');
+            return 'timeout'
+        }, 2000)
+    }
+    
+    async function test () {
+        console.log('teststart');
+        var normalResult = normalFunction(); 
+        //正常情况下如果normalFunction里面有异步函数，那么不会等异步函数执行完，就会往下执行，所以normalResult为undefind
+        console.log(['normalResult', normalResult]);
+       
+        var asyncResult = await asyncFunction();
+        console.log(['asyncResult', asyncResult]);
+        var asyncResult2 = "";
+        asyncFunction2().then((res)=>{
+            asyncResult2 = res;
+            console.log(['asyncResult2', asyncResult2]);
+        
+        });
+        
+        var timeoutResult = timeout();
+        console.log(['timeoutResult', timeoutResult]);
+        console.log('testend')
+    }
+
+    test();
+
+</script>
+
+</body>
+</html>

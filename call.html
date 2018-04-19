@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <div id="div1" style="margin:20px;padding:10px;border:1px solid #ccc;width:100px;background: red"></div>
+</body>
+<script>
+    function animal(name , age){
+        this.name = name;
+        this.age = age;
+    }
+    animal.prototype.sing = function(){
+        console.log("name:"+this.name);
+    }
+
+
+    function dog(name, age){
+        animal.call(this,name,age);
+        animal.prototype.sing.call(this);
+    }
+
+
+
+    var animal1 = new animal("mimi",10);
+    var dog1 = new dog("ali",12);
+
+//    animal1.sing();
+//    dog1.sing();
+
+    ({
+        x: 10,
+        foo: function () {
+            function bar() {
+                console.log("bar x "+x);//这儿不是with无法找this.x
+                console.log("bar y  "+y);
+                console.log(["bar this ",this]);
+                console.log("bar this.x "+this.x);
+            }
+            with (this) {
+                var x = 20;
+                var y = 30;
+                console.log("with x "+x);//就是this.x
+                console.log("with y "+y);
+                console.log(["with this ",this]);
+                bar.call(this);
+            }
+        }
+    }).foo();
+
+
+    var a = [1,2,3];
+    var b = a;
+    function aaa(){
+        console.log(a);
+        console.log(b);
+        b.push(4);
+        console.log(a);
+        console.log(b);
+    }
+    aaa();
+
+</script>
+</html>

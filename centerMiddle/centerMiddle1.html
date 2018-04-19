@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>水平垂直居中</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .div1{
+            width:200px;
+            height:400px;
+            background: pink;
+            /*margin:auto;只能水平居中*/
+            /*margin-left: 50%;*/
+            /*transform: translateX(-50%);左右可以上下不行*/
+            margin:auto;
+            position:absolute;
+            left:0;
+            top:0;
+            right:0;
+            bottom:0;
+        }
+        .div2{
+            width:100px;
+            height:200px;
+            background: red;
+            position:absolute;
+            top:50%;
+            left:50%;
+            transform: translate(-50%,-50%);
+        }
+    </style>
+</head>
+<body>
+
+<div class="div1">
+    <div class="div2"></div>
+</div>
+</body>
+</html>

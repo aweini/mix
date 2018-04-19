@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="test1.css">
+    <style>
+        #div3{
+            background: yellow;
+        }
+        #div4{
+            background: blue;
+            padding: 20px;
+            width: 100px;
+
+        }
+        #div5{
+            background: gray;
+            padding: 20px;
+            width: 100px;
+            height:100px;
+
+        }
+        #div51{
+            background: green;
+            height:200px;
+        }
+    </style>
+</head>
+<body>
+
+ <div id="div1" style="width:100px;height: 100px;background: pink;padding:10px">
+ </div>
+
+ <div id="div2" ></div>
+ <div id="div3" >3</div>
+ <div id="div4" >1111111111111111111111111111111111111111</div>
+ <div id="div5" >
+     <div id="div51">51</div>
+ </div>
+ <div id="div6" ></div>
+ <div id="div7" ></div>
+
+
+<script>
+    window.onload = function(){
+        var div1 = document.getElementById('div1');
+        console.log(div1.style.width);
+        console.log(getComputedStyle(div1).width);
+        console.log(div1.clientWidth);
+        console.log(div1.offsetWidth);
+
+        var div2 = document.getElementById('div2');
+        //alert(div2.style.width)
+        //alert(window.navigator.userAgent)
+        var body = document.getElementsByTagName("body")[0];
+
+        body.onscroll = function(){
+            alert(1)
+        }
+
+    }
+</script>
+</body>
+</html>

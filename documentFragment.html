@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <div>11</div>
+    <div>22</div>
+    <div>33</div>
+</div>
+<script>
+    // Create the fragment
+    var fragment = document.createDocumentFragment();//劫持app里面的元素,放到自己里面,然后把自己元素挂到document上
+
+    //add DOM to fragment
+
+//    for(var i = 0; i < 10; i++) {
+//        var spanNode = document.createElement("span");
+//        spanNode.innerHTML = "number:" + i;
+//        fragment.appendChild(spanNode);
+//    }
+
+    var app = document.getElementById("app");
+    var child;
+    while(child = app.firstChild){
+        child.innerHTML = "pp";
+        fragment.appendChild(child)
+    }
+    //add this DOM to body
+    document.body.appendChild(fragment);
+</script>
+</body>
+</html>

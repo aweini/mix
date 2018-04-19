@@ -1,0 +1,88 @@
+
+@media only screen and (min-width: 360px) {
+    body {
+        font-size: 18px;
+    }
+}
+@media only screen and (min-width: 375px) {
+    body {
+        font-size: 19px;
+    }
+}
+@media only screen and (min-width: 412px) {
+    body {
+        font-size: 21px;
+    }
+}
+@font-face {font-family: 'iconfont';
+    src: url('icon/iconfont.eot'); /* IE9*/
+    src: url('icon/iconfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('icon/iconfont.woff') format('woff'), /* chrome、firefox */
+    url('icon/iconfont.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+    url('icon/iconfont.svg#iconfont') format('svg'); /* iOS 4.1- */
+}
+*{
+    margin:0;
+    padding: 0;
+}
+html,body{
+    height: 100%;
+}
+.iconfont{
+    font-family:"iconfont" !important;
+    font-size:16px;font-style:normal;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-stroke-width: 0.2px;
+    -moz-osx-font-smoothing: grayscale;
+}
+.icon-jiantou{
+    transform: rotate(180deg);
+}
+.questionnaire{
+    width: 100%;
+    height: 100%;
+    overflow-y: scroll;
+}
+
+.questionnaire .questionnaire-list{
+    background: #fff;
+}
+
+.questionnaire .questionnaire-item{
+    padding: .368421em .789473em;
+    border-bottom:1px solid #dfdfdf;
+}
+.questionnaire .questionnaire-head,.questionnaire-foot{
+    width:100%;
+    height:1.526315em;
+    line-height:1.526315em;
+}
+.questionnaire .questionnaire-foot{
+    margin-bottom: 0px;
+}
+
+.questionnaire .questionnaire-head .questionnaire-name{
+    float: left;
+    color: #333;
+    font-size:.875em;
+}
+.questionnaire .questionnaire-head .questionnaire-more{
+    float: right;
+    width: 2em;
+    transform: rotate(180deg);
+    color:#999;
+    font-weight: 800;
+}
+.questionnaire .questionnaire-head .questionnaire-more .icon{
+    font-size:0.875em;
+}
+.questionnaire .questionnaire-foot .questionnaire-time{
+    float: left;
+    color:#666;
+    font-size:.75em;
+}
+.questionnaire .questionnaire-foot .questionnaire-num{
+    float: right;
+    color:#999;
+    font-size:.75em;
+}

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>立即执行函数表达式</title>
+</head>
+<style>
+    div{
+        padding: 10px;
+        margin:5px;
+        border:1px solid red;
+    }
+</style>
+<body>
+<div>
+    0
+</div>
+<div>
+    1
+</div>
+<div>
+    2
+</div>
+<div>
+    3
+</div>
+<div>
+    4
+</div>
+
+<script>
+    window.onload = function(){
+        (function(){ console.log(1) }());
+
+        (function(){
+            console.log(2);
+        })();
+
+        var oDivs = document.querySelectorAll("div");
+        console.log(["oDivs",oDivs]);
+
+//        oDivs[0].onclick = function(){
+//            alert("hehehe");
+//        }//不是jquery 不能oDivs.onclick这样写
+
+//        for(var i = 0;i < oDivs.length; i++){
+//            oDivs[i].onclick = (function(i){//立即执行函数表达式 立即执行后 返回 function(){alert(i)};此时i虽然味局部变量但因为闭包的关系会一直存在内存中 当有点击事件的时候会在执行function(){alert(i)}
+//                return function(){//闭包
+//                    alert(i)
+//                }
+//            })(i)
+//        }
+        for(var i = 0;i<oDivs.length; i++){
+            (function(i){
+                oDivs[i].onclick = function(){
+                    alert(i)
+                }
+            })(i);
+        }
+
+
+    }
+</script>
+</body>
+</html>

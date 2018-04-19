@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>promise2</title>
+</head>
+<body>
+<script>
+    function Promise(fn){
+        var promise = this;
+        var value = null;
+        //异步执行后成功调用函数 callback
+        promise._resolves = [];
+        promise._rejects = [];
+        //需要一个成功的回调
+       // var callback;
+        promise._status = 'PENDING';
+
+        //一个实例的方法,用来注册异步事件
+        //回调函数 为 then里面的传递的函数
+        //1 先注册_resolves
+        this.then = function(onFulFilled,onRejected){
+           // callback = done;
+            return new Promise(function(resolve,reject){
+                function handle(value){
+                    var ret = typeof onFulFilled == 'function' && onFulFilled(value) || value;
+                    if(ret && typeof ret['then'] == 'function'){
+                        ret.then(function(value){
+                            resolve(value)
+                        })
+                    }else{
+                        resolve(ret)
+                    }
+                }
+
+                function errback(reason){
+                        reason = typeof onRejected == 'function'&& onRejected(value) || value;
+                        reject(reason);
+                }
+
+                if(promise._status=="PENDING"){
+                    promise._resolves.push(handle);
+                    promise._rejects.push(errback);
+                }else if(promise._status=="FULFILLED"){
+                    handle(value);
+                }else if(promise._status=="REJECTED"){
+                    errback(promise._reason);
+                }
+            });
+
+
+
+        };
+        //resolve的时候执行then里传递的回调函数
+        //3
+        function resolve(value){
+            //callback();
+            //防止resolve中没有异步函数,resolve先于then执行_resolves里面没有值
+            setTimeout(function(){
+                promise._status = "FULFILLED";
+                promise._resolves.forEach(function(callback){
+                    callback();
+                })
+            });
+
+        }
+        function reject(value){
+            //callback();
+            //防止resolve中没有异步函数,resolve先于then执行_resolves里面没有值
+            setTimeout(function(){
+                promise._status = "REJECTED";
+                promise._rejects.forEach(function(callback){
+                    promise._reason = callback(value);
+                })
+            });
+
+        }
+        //fn里有异步事件
+        //2 调用是确保有resolves
+        fn(resolve)
+    }
+
+
+    var p1 = new Promise(function(resolve, reject){
+        setTimeout(function(){
+            console.log('步骤1 执行');
+            resolve('步骤1 结果');
+        },2000)
+    });
+
+    var p2 = new Promise(function(resolve, reject){
+        setTimeout(function(){
+            console.log('步骤2 执行');
+            resolve('步骤2 结果');
+        },1000)
+    });
+    //异步的内容从一开始就执行,当执行完执行then里的东西
+    p1.then(function(val){
+        console.log(val);
+        return p2
+    }).then(function(val){
+        console.log(val);
+        return "不知道该返回啥给后面的东西"
+    }).then(function(val){
+        console.log(val);
+    });
+
+</script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+haha
+</body>
+<script>
+//函数名  函数参数  函数主题
+//函数主题 直接返回值不可写{}
+var single = a =>a;
+console.log(single("hello"));
+
+var log = () =>{
+    alert("no params");
+}
+log();
+
+var add = (a,b) => a+b;
+    alert(add(3,5));
+
+var del = (a,b) => {
+    return a-b;
+}
+alert(del(3,5));
+
+
+var getObj = arr =>{
+    return ({
+        name: "jason",
+        age:"22"
+    })
+}
+console.log(getObj());
+
+var returnObj = arr =>{
+    return (arr);
+}
+console.log(returnObj({
+    name:"mahong",
+    age:"26"
+}));
+
+</script>
+</html>

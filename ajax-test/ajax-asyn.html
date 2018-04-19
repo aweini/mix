@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"/>
+    <meta content="telephone=no" name="format-detection"/>
+    <title>Title</title>
+    <script src="js/jquery-3.0.0.min.js"></script>
+</head>
+<style>
+    button{
+        display: block;
+        width: 50%;
+        margin:10px auto;
+        border:1px solid #999;
+        border-radius: 10px;
+        background: #fff;
+        padding: 10px 0;
+
+    }
+</style>
+<body>
+<h3>请打开控制台观看</h3>
+<h3>分别点击两个按钮</h3>
+<h3>比较 "ajax before" ,ajax请求的数据 "ajax after" 三者请求的顺序 </h3>
+<button>向页面发送 HTTP GET 请求，然后获得返回的结果 异步 async:true</button>
+<button>向页面发送 HTTP GET 请求，然后获得返回的结果 同步 async:false</button>
+<button>向api.noods.me发送post请求</button>
+<button>向egis-cssp-dmzstg1.pingan.com.cn 平安测试环境发请求</button>
+<button>向http://home.pingan.com.cn 平安生产环境发请求</button>
+
+</body>
+<script>
+    function ajaxfunc(config,callback){
+        var xmlhttp;
+        if (window.XMLHttpRequest)
+        {
+            //  IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
+            xmlhttp=new XMLHttpRequest();
+        }
+        else
+        {
+            // IE6, IE5 浏览器执行代码
+            xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp.open(config.type,config.url,true);
+        xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+        xmlhttp.send(config.data);
+
+        xmlhttp.onreadystatechange=function()
+        {
+            if (xmlhttp.readyState==4 && xmlhttp.status==200)
+            {
+
+                callback(xmlhttp.responseText);
+            }
+        }
+    }
+
+
+    $(document).ready(function(){
+
+        $($("button")[0]).click(function(){
+            console.log("ajax before");
+//            $.get({url:"./data/text.txt",async:true},function(data,status){
+//               console.log(data)
+//            });
+            ajaxfunc({url:"./data/text.txt",type:"get"},function(res){
+                console.log(res)
+            });
+            console.log("ajax after");
+        });
+
+        $($("button")[1]).click(function(){
+            console.log("ajax before");
+            $.get({url:"./data/text.txt",async:false},function(data,status){
+                console.log(data)
+            });
+            console.log("ajax after");
+        });
+        $($("button")[2]).click(function(){
+//            $.ajax({
+//                url: "http://api.noods.me/getPreview",
+//                type:"post"
+//            },function(data,status){
+//                console.log(data)
+//            });
+            ajaxfunc({url:"http://api.noods.me/getPreview",type:"post"},function(res){
+                console.log(res)
+            });
+        });
+
+        $($("button")[3]).click(function(){
+//            $.ajax({
+//                url: "http://egis-cssp-dmzstg1.pingan.com.cn/m/simulateLogin.dox",
+//                type:"post",
+//                data:{
+//                    userId: 'US00000003470191'
+//                }
+//            },function(data,status){
+//                console.log(data)
+//            });
+            ajaxfunc({
+                url:"http://egis-cssp-dmzstg1.pingan.com.cn/m/simulateLogin.dox",
+                type:"post",
+                data:"userId=US00000003470191"
+            },function(res){
+                console.log(res)
+            });
+        });
+
+        $($("button")[4]).click(function(){
+            $.ajax({
+                url: "http://home.pingan.com.cn/m/simulateLogin.dox",
+                type:"post",
+                data:{
+                    userId: 'US00000003470191'
+                }
+            },function(data,status){
+                console.log(data)
+            });
+        });
+
+//        $.ajax({
+//            url: "https://home.pingan.com.cn/m/saveRenewalInsurance.dox",
+//            data: {
+//                idCsspOrder:'TD00000008527749',
+//                name:'放方法',
+//                account:'1111',
+//                provinceCode:'340000',
+//                cityCode:'340800',
+//                bankNo:'301',
+//                branchNo:'30136101'
+//            },
+//            type:"post"
+//        },function(data,status){
+//            console.log(data)
+//        });
+
+
+    });
+
+
+</script>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body id="body">
+<input id="input1" type="text" placeholder="请输入" style="border:1px solid red"/>
+<div>
+        <h1>h1. Bootstrap heading <small>Secondary text</small></h1>
+        <del>This line of text is meant to be treated as deleted text.</del>
+</div>
+<div><pre>"%3Cscript%3Ealert(123)%3C%2Fscript%3E"</pre></div>
+<script>
+    window.onload = function(){
+        var body = document.getElementById("body");
+        var input1 = document.getElementById("input1");
+        input1.onblur = function(){
+            var inputValue = input1.value;
+            body.innerHTML = body.innerHTML +inputValue
+        }
+    }
+
+
+</script>
+
+</body>
+</html>

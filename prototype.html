@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>prototype</title>
+</head>
+<body>
+
+    <div></div>
+    <script>
+        var girl = {
+            name: '小美'
+        }
+
+        var boy = {
+            name: '小帅',
+            pay: function(){
+                console.log("消费了1000元");
+            }
+        }
+
+        Object.setPrototypeOf(girl,boy);//不要把原型当成亲爹，要当成智囊，要当成老公，要当成干爹，本质是委托关系，说白了，就是“利用”。
+
+
+        // console.log( girl.prototype);//undefined  function有prototype指向Object,function的_proto_指向函数原型,其他对象的_proto_指向他的原型
+//        girl.prototype.buy = function(){
+//            console.log("buybuybuy");
+//        }//XXXXXX
+
+       // girl.pay();
+
+
+
+        var createPerson = function(name){
+
+            return {//必须return
+                name: name,
+                sayName: function(){
+                    console.log(["this.name",this.name]);
+                }
+            }
+
+        }
+
+        var person = createPerson("xiaomei")
+
+       // person.sayName();
+
+
+
+        var Person = function(name){
+            this.name = name;
+        }
+
+        Person.prototype = {
+            sayName : function(){
+                console.log(this.name);
+            }
+        }
+
+        Function.prototype.new = function(){
+                var that = Object.create(this.prototype);
+
+                this.apply(that, arguments);
+                console.log(["this",this]);
+                console.log(["that",that]);
+                return that;
+        }
+
+        var person = Person.new("laoyao");
+        person.sayName();
+
+    </script>
+</body>
+</html>

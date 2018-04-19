@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>drag</title>
+    <style>
+        #div1{
+            width:100px;
+            height: 100px;
+            background:red;
+            position:absolute;
+            left:0;
+            top:10px;
+        }
+        #img1{
+            width:200px;
+            height: auto;
+            position: absolute;
+            left:0;
+            top:130px;
+        }
+        #text1{
+            width:100px;
+            height:200px;
+            border:1px solid red;
+            position:absolute;
+            left:0;
+            top:260px;
+            overflow: hidden;
+        }
+        #text2{
+            position: absolute;
+            left:0;
+            top:0;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="div1">
+
+    </div>
+    <img id="img1" src="2.jpg" />
+
+    <div id="text1">
+        <div id="text2">
+        <h1>喵1</h1>
+
+        <h1>喵2</h1>
+
+        <h1>喵3</h1>
+
+        <h1>喵4</h1>
+
+        <h1>喵5</h1>
+
+        <h1>喵6</h1>
+
+        <h1>喵7</h1>
+
+        <h1>喵8</h1>
+
+        <h1>喵9</h1>
+
+        <h1>喵10</h1>
+
+        <h1>喵11</h1>
+
+        <h1>喵12</h1>
+
+        <h1>喵13</h1>
+
+        <h1>喵14</h1>
+
+        <h1>喵15</h1>
+
+        <h1>喵16</h1>
+
+        <h1>喵17</h1>
+
+        <h1>喵18</h1>
+
+        <h1>喵19</h1>
+
+        <h1>喵20</h1>
+
+        <h1>喵21</h1>
+
+        <h1>喵22</h1>
+
+        <h1>喵23</h1>
+
+        <h1>喵24</h1>
+
+        <h1>喵25</h1>
+
+        <h1>喵26</h1>
+
+        <h1>喵27</h1>
+
+        <h1>喵28</h1>
+
+        <h1>喵29</h1>
+
+        <h1>喵30</h1>
+
+        <h1>喵31</h1>
+
+        <h1>喵32</h1>
+
+        <h1>喵33</h1>
+
+        <h1>喵34</h1>
+
+        <h1>喵35</h1>
+
+        <h1>喵36</h1>
+        </div>
+    </div>
+    <input  placeholder="111" id="input1" />
+    <script>
+        window.onload = function(){
+            var oDiv1 = document.querySelectorAll("#div1")[0];
+            var oBody = document.querySelectorAll("body")[0];
+            var oText = document.querySelectorAll("#text1")[0];
+            var oText2 = document.querySelectorAll("#text2")[0];
+            var oInput1 = document.querySelectorAll("#input1")[0];
+            oText.onmousewheel = function(ev){
+                    var ev = ev || event;
+                   // console.log(ev);
+                   // console.log(ev.wheelDelta);
+                    var oTextScrollTop = oText.scrollTop;
+                    var oTextScrollHeight = oText.scrollHeight;
+                   // console.log(oTextScrollHeight);
+                    if(ev.wheelDelta<0){
+
+                        if(oText2.offsetTop+oTextScrollHeight<=10){
+                            oText2.style.top = (-oTextScrollHeight) + "px";
+                        }else{
+                            oText2.style.top = oText2.offsetTop - 10 + "px";
+                        }
+
+                    }else{
+                        if(oText2.offsetTop>=0){
+                            oText2.style.top = 0 + "px";
+                        }else{
+                            oText2.style.top = oText2.offsetTop + 10 + "px";
+                        }
+
+                    }
+
+                    return false;
+            }
+
+//            document.onmousewheel = function(ev){
+//                console.log(ev);
+//                console.log(ev.wheelDelta);
+//            }
+
+            var oImg1 = document.querySelectorAll("#img1")[0];
+            drag(oDiv1);
+            drag(oImg1);
+            function drag(obj){
+                obj.onmousedown = function(ev){
+                    var ev = ev || event;
+                    var that = this;
+                    var disX = ev.clientX - obj.offsetLeft;
+                    var disY = ev.clientY - obj.offsetTop;
+
+                    document.onmousemove = function(ev){
+                        var ev = ev || event;
+
+                        var L = ev.clientX - disX;
+                        var T = ev.clientY - disY;
+                        var maxL = document.documentElement.clientWidth - that.offsetWidth;
+                        var maxT = document.documentElement.clientHeight - that.offsetHeight;
+
+                        //弹性吸附,在一定的时间内move执行一次,一次拉很远
+                        if(L < 20){
+                            L = 0;
+                        }else if(L > maxL){
+                            L = maxL;
+                        }
+
+                        if(T < 0){
+                            T = 0
+                        }else if(T > maxT){
+                            T = maxT;
+                        }
+
+                        obj.style.left = L + 'px';
+                        obj.style.top = T + 'px';
+                    }
+
+                    document.onmouseup = function(){
+                        document.onmousemove  = document.onmouseup = null; //销毁事件函数
+                    }
+
+                    return false;
+                }
+
+            }
+
+            oInput1.onkeydown = function(ev){
+                var ev = ev || event;
+                console.log(ev);
+            }
+
+            var moveObj = null;
+            document.onclick = function(ev){
+                console.log(["target",ev.target]);
+                moveObj = ev.target;
+            }
+
+            setInterval(function(){
+                if(left){
+                    moveObj.style.left = moveObj.offsetLeft - 5 + "px";
+                }else if(up){
+                    moveObj.style.top = moveObj.offsetTop - 5 + "px";
+                }else if(right){
+                    moveObj.style.left = moveObj.offsetLeft + 5 + "px";
+                }else if(down){
+                    moveObj.style.top = moveObj.offsetTop + 5 + "px";
+                }
+            },50)
+
+
+            var left = up = right = down = false;
+
+            document.onkeydown = function(ev){
+                var ev = ev || event;
+                console.log(ev.keyCode);
+
+                switch (ev.keyCode){
+                    case 37:
+                        left = true;
+                        break;
+                    case 38:
+                        up = true;
+                        break;
+                    case 39:
+                        right = true;
+                        break;
+                    case 40:
+                        down = true;
+                        break;
+                }
+            }
+
+
+            document.onkeyup = function(ev){
+                var ev = ev || event;
+                console.log(ev.keyCode);
+
+                switch (ev.keyCode){
+                    case 37:
+                        left = false;
+                        break;
+                    case 38:
+                        up = false;
+                        break;
+                    case 39:
+                        right = false;
+                        break;
+                    case 40:
+                        down = false;
+                        break;
+                }
+            }
+
+
+        }
+    </script>
+</body>
+
+</html>

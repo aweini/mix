@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title></title>
+		<meta charset="UTF-8">
+		<meta name="manifest" content="version.json|manifest.json"/>
+		<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"/>
+		<meta content="telephone=no" name="format-detection"/>
+	</head>
+	<body>
+		<p>正则表达式</p>
+	</body>
+	<script type="text/javascript">
+		console.log("正则表达式");
+		//string 方法 search()
+		var str = "visit w3cschool";
+		var n = str.search(/w3cschool/i);
+		console.log(["n",n]);
+		//string 方法 replace() 原字符串不变
+		var res = str.replace(/w3cschool/i,"Microsoft");
+		console.log(["res",res]);
+		console.log(["str",str]);
+		//regexp 方法 test() exec()
+		var patt = /e/g;
+		var result = patt.test("i am a geeeeee");
+		console.log(["test() result",result]);
+
+		var resultArray = patt.exec("i am a eeee a eeee");
+		console.log(["exec() resultArray",resultArray]);
+		var insuredGuide = "1、您作为被保险人在网上进行员工弹性计划自选时,应在对保险产品充分了解的基础上进行投保方案的选择。已经解该产品投保范围、保障内容且同意投保人为您投保。您已了解投保险种条款,且保险人或投保人对投保险种条款进行了说明尤其是对保险责任条款、免除保险人责任的条款、合同解除条款进行了明确说明,且您对上述内容均已认真阅读、理解并同意遵守。2、对于需要填写健康告知的,您需准确填写,如有故意或因重大过失未履行如实告知义务,足以影响保险公司决定是否同意承保或者提高保险费率的,保险公司有权取消您的保险资格。如果故意不履行如实告知义务,对于取消您的保险资格前发生的保险事故,保险公司可不承担给付保险金的责任,并不退还保险费。您如果因重大过失未履行如实告知义务,对保险事故的发生有严重影响的,对于取消您的保险资格前发生的保险事故,保险公司不承担给付保险金的责任,但应当退还保险费。3、您在作出方案选择时应准确填写并核对相关信息,信息包括但不仅限于手机号、EMAIL、银行帐号(理赔转帐使用)、开户银行代码、开户银行全称、银行帐号开户人姓名、开户人证件类型、开户人证件号码、健康告知。4、被保险人帐号及对应的开户行名称等用于保险公司将理赔给付金(身故理赔给付金除外)转入被保险人的银行帐号中,该银行帐号必须是被保险人本人的银行帐号,连带被保险人可以使用主被保险人的银行帐号,除此之外不得使用其他人员的银行帐号。如因提供的账号错误或因非银行(非保险人)原因,而导致给付金转账失败的,保险人不承担责任。"
+		var str= "。";
+		str += insuredGuide; 
+		var insuredGuideArray = str.split(/。\d、/g);//。1、 这样的截取
+		insuredGuideArray.splice(0,1);
+		console.log(["insuredGuideArray",insuredGuideArray])
+
+		var chapterReg  =/Chapter [1-9][0-9]*/;//*对[0-9]有限制
+		var chapterReg2 = /(Chapter [1-9][0-9])*/;
+		var chapterResult =chapterReg.test("Chapter 10");//true
+		var chapterResult2 =chapterReg2.test("Chapter2 13333 Chapter2 14444");//true
+		console.log(["chapterResult",chapterResult]);//true||false
+
+		var chapterStr = "Chapter2 13333 Chapter2 14444";
+		var n =chapterStr.search(chapterReg);
+		console.log(["chapter n",n]);//-1||0||1.....
+
+	</script>
+</html>

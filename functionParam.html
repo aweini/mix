@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    var bb = (function(){
+        function aa(a,b){
+            console.log(["a",a]);
+            console.log(["typeof a",typeof a]);
+            console.log(["b",b]);
+            console.log(["typeof b",typeof b]);
+            console.log(["typeof c",typeof c]);
+            console.log(["arguments",arguments]);
+            Array.prototype.slice(arguments);
+            console.log(["arguments",arguments]);
+            var r=[];
+            var ccc = {
+                "name": "ma",
+                "age":19,
+                "moreInfo":{
+                    "sex":"man"
+                }
+            }
+            function iteration(ccc){
+                for(var n in ccc){
+                    if(typeof ccc[n] == "object"){
+                        iteration(ccc[n])
+                    }else{
+                        r.push(n+'='+ccc[n]);
+                    }
+
+                }
+            }
+
+            iteration(ccc);
+            rstr = r.join("&");
+            console.log(["rstr",rstr]);
+        }
+        aa(1,{"name":"hong"})
+
+    })();
+
+
+
+
+</script>
+</body>
+</html>
